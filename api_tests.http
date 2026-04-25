@@ -1,0 +1,11 @@
+### Test default endpoint
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+### Test Supabase connection
+GET http://127.0.0.1:8000/test-db
+Accept: application/json
+
+{
+    "ignore_cache": true
+}
