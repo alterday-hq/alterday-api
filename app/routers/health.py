@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from app.database import supabase
 
 # Create router for health checks
@@ -27,8 +27,4 @@ async def test_db_connection():
             "data": response.data
         }
     except Exception as e:
-        return {
-            "status": "error",
-            "message": "Failed to connect to Supabase DB.",
-            "details": str(e)
-        }
+        raise HTTPException(status_code=500, detail=str(e))
