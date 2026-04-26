@@ -1,11 +1,12 @@
 from fastapi import FastAPI
-from dotenv import load_dotenv
-import os
+from app.routers import health
 
-load_dotenv()  
+# Initialize FastAPI application
+app = FastAPI(
+    title="AlterDay API",
+    description="Backend service for ML simulations and data processing.",
+    version="1.0.0"
+)
 
-app = FastAPI()
-
-@app.get("/")
-def root():
-    return {"message": "Dziala!", "env": os.getenv("APP_ENV")}
+# Include routers from the routers directory
+app.include_router(health.router)
